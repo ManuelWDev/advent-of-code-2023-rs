@@ -1,5 +1,10 @@
 advent_of_code::solution!(5);
 
+#[cfg(windows)]
+const EMPTY_LINE: &'static str = "\r\n\r\n";
+#[cfg(not(windows))]
+const EMPTY_LINE: &'static str = "\n\n";
+
 pub fn part_one(input: &str) -> Option<u64> {
     let (seeds, mappers) = parse_input(input, &parse_seeds_line);
 
@@ -98,7 +103,7 @@ impl Mapper {
 }
 
 fn parse_input<T>(input: &str, seed_parser: &dyn Fn(&str) -> T) -> (T, Vec<Mapper>) {
-    let mut newline_parts = input.split("\r\n\r\n").skip_while(|line| line.is_empty());
+    let mut newline_parts = input.split(EMPTY_LINE).skip_while(|line| line.is_empty());
     let seeds = seed_parser(newline_parts.next().unwrap());
     let mut mappers = Vec::new();
     for line in newline_parts {
