@@ -37,7 +37,13 @@ fn read_input(input: &str, line_reader: &dyn Fn(&str) -> Vec<u64>) -> Vec<Race> 
 fn read_line_multi_races(line: &str) -> Vec<u64> {
     let mut line_parts = line.split(':');
     line_parts.next();
-    line_parts.next().unwrap().trim().split_whitespace().map(|x| x.parse().unwrap()).collect()
+    line_parts
+        .next()
+        .unwrap()
+        .trim()
+        .split_whitespace()
+        .map(|x| x.parse().unwrap())
+        .collect()
 }
 
 fn read_line_single_race(line: &str) -> Vec<u64> {
@@ -68,7 +74,7 @@ impl Race {
 
         let used_x1 = x1.ceil() as u64 + if x1.fract() == 0.0 { 1 } else { 0 };
         let used_x2 = x2.floor() as u64 - if x2.fract() == 0.0 { 1 } else { 0 };
-        
+
         used_x2 - used_x1 + 1
     }
 }

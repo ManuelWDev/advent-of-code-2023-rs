@@ -8,7 +8,9 @@ pub fn part_one(input: &str) -> Option<u32> {
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
-    let named_digits = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+    let named_digits = [
+        "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+    ];
     let normal_digits = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
     let search_digits = [normal_digits, named_digits].to_vec();
 
@@ -58,10 +60,15 @@ fn find_digits(line: &str, named_digits: &[&str; 9]) -> Vec<FoundDigit> {
     let mut found_digits = Vec::new();
 
     for (digit_index, name) in named_digits.iter().enumerate() {
-        found_digits.append(&mut line.match_indices(name).map(|(index, _)| FoundDigit {
-            digit: (digit_index + 1) as u32,
-            index,
-        }).collect::<Vec<FoundDigit>>());
+        found_digits.append(
+            &mut line
+                .match_indices(name)
+                .map(|(index, _)| FoundDigit {
+                    digit: (digit_index + 1) as u32,
+                    index,
+                })
+                .collect::<Vec<FoundDigit>>(),
+        );
     }
 
     found_digits

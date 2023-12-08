@@ -9,7 +9,10 @@ pub fn part_one(input: &str) -> Option<u32> {
 
     for line in input.lines() {
         let game = Game::from(line);
-        if game.max_red() <= allowed_red && game.max_green() <= allowed_green && game.max_blue() <= allowed_blue {
+        if game.max_red() <= allowed_red
+            && game.max_green() <= allowed_green
+            && game.max_blue() <= allowed_blue
+        {
             allowed_id_sum += game.id;
         }
     }
@@ -61,11 +64,7 @@ impl From<&str> for Pull {
             }
         }
 
-        Pull {
-            red,
-            green,
-            blue,
-        }
+        Pull { red, green, blue }
     }
 }
 
@@ -74,13 +73,22 @@ impl From<&str> for Game {
         let mut parts = value.split(": ");
         let mut game_parts = parts.next().unwrap().split(' ');
         game_parts.next();
-        let game_id = game_parts.next().unwrap().split(' ').next().unwrap().parse::<u32>().unwrap();
-        let pulls = parts.next().unwrap().split(";").map(|pull| Pull::from(pull)).collect::<Vec<Pull>>();
+        let game_id = game_parts
+            .next()
+            .unwrap()
+            .split(' ')
+            .next()
+            .unwrap()
+            .parse::<u32>()
+            .unwrap();
+        let pulls = parts
+            .next()
+            .unwrap()
+            .split(";")
+            .map(|pull| Pull::from(pull))
+            .collect::<Vec<Pull>>();
 
-        Game {
-            id: game_id,
-            pulls,
-        }
+        Game { id: game_id, pulls }
     }
 }
 

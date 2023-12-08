@@ -131,10 +131,7 @@ fn parse_seed_ranges(line: &str) -> Vec<Range> {
     let mut whitespace_parts = seeds_text.split_whitespace();
     while let (Some(start), Some(length)) = (whitespace_parts.next(), whitespace_parts.next()) {
         let start = start.parse::<u64>().unwrap();
-        seeds.push(Range::new(
-            start,
-            start + length.parse::<u64>().unwrap(),
-        ));
+        seeds.push(Range::new(start, start + length.parse::<u64>().unwrap()));
     }
     seeds
 }

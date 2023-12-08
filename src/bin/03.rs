@@ -18,7 +18,14 @@ pub fn part_two(input: &str) -> Option<u32> {
 fn parse_input(input: &str) -> Vec<Vec<MarkChar>> {
     let mut rows = Vec::new();
     for line in input.lines() {
-        rows.push(line.chars().map(|c| MarkChar { char: c, marked: false }).collect::<Vec<MarkChar>>());
+        rows.push(
+            line.chars()
+                .map(|c| MarkChar {
+                    char: c,
+                    marked: false,
+                })
+                .collect::<Vec<MarkChar>>(),
+        );
     }
 
     for row_index in 0..rows.len() {
@@ -91,8 +98,7 @@ fn calc_gear_ratio_sum(rows: &Vec<Vec<MarkChar>>) -> u32 {
                         if already_has_one_number {
                             sum += current_number * number;
                             continue 'outer;
-                        }
-                        else {
+                        } else {
                             current_number = number;
                             already_has_one_number = true;
                         }

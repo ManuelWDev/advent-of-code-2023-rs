@@ -7,7 +7,7 @@ pub fn part_one(input: &str) -> Option<u32> {
         let winning_numbers_count = get_matching_numbers_count(&winning_numbers, &my_numbers);
 
         if winning_numbers_count > 0 {
-            sum  += 1 << (winning_numbers_count - 1);
+            sum += 1 << (winning_numbers_count - 1);
         }
     }
     Some(sum)
@@ -41,7 +41,10 @@ fn parse_line(line: &str) -> (Vec<u32>, Vec<u32>) {
 }
 
 fn parse_number_line(line: &str) -> Vec<u32> {
-    line.trim().split_whitespace().map(|n| n.parse::<u32>().unwrap()).collect::<Vec<u32>>()
+    line.trim()
+        .split_whitespace()
+        .map(|n| n.parse::<u32>().unwrap())
+        .collect::<Vec<u32>>()
 }
 
 fn get_matching_numbers_count(winning_numbers: &Vec<u32>, my_numbers: &Vec<u32>) -> u32 {

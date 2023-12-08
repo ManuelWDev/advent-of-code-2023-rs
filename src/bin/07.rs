@@ -12,7 +12,10 @@ pub fn part_two(input: &str) -> Option<u32> {
 }
 
 fn parse_input(input: &str, joker_value: u8) -> Vec<Hand> {
-    input.lines().map(|line| create_hand(line, joker_value)).collect()
+    input
+        .lines()
+        .map(|line| create_hand(line, joker_value))
+        .collect()
 }
 
 fn get_value(hands: &mut Vec<Hand>) -> u32 {
@@ -49,7 +52,11 @@ fn create_hand(line: &str, joker_value: u8) -> Hand {
     let bid = parts.next().unwrap().parse::<u32>().unwrap();
 
     let hand_type = get_hand_type(cards);
-    Hand { cards, bid, hand_type }
+    Hand {
+        cards,
+        bid,
+        hand_type,
+    }
 }
 
 fn create_cards(card_string: &str, joker_value: u8) -> [u8; 5] {
@@ -78,7 +85,7 @@ impl Ord for Hand {
                     }
                 }
                 Ordering::Equal
-            },
+            }
             ordering => ordering,
         }
     }
