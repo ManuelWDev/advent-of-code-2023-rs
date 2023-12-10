@@ -33,7 +33,7 @@ fn get_next_number(line: &Vec<i64>) -> i64 {
     return if line.iter().all(|x| *x == 0) {
         0
     } else {
-        let mut differences = Vec::new();
+        let mut differences = Vec::with_capacity(line.len() - 1);
         for index in 1..line.len() {
             differences.push(line[index] - line[index - 1]);
         }
