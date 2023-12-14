@@ -1,4 +1,6 @@
+use std::collections::hash_map::DefaultHasher;
 use std::collections::HashMap;
+use std::hash::{Hash, Hasher};
 advent_of_code::solution!(14);
 
 pub fn part_one(input: &str) -> Option<u32> {
@@ -17,7 +19,7 @@ pub fn part_two(input: &str) -> Option<u32> {
         spin_rocks(&mut map);
 
         // check if pattern repeats
-        if let Some(previous) = maps.insert(map.clone(), i) {
+        if let Some(previous) = maps.insert(hash(&map), i) {
             let cycle = i - previous;
             let remaining = (iteration_count - i) % cycle - 1;
             for _ in 0..remaining {
@@ -27,6 +29,12 @@ pub fn part_two(input: &str) -> Option<u32> {
         }
     }
     Some(count_north_load(&map))
+}
+
+fn hash(map: &Vec<Vec<RockType>>) -> u64 {
+    let mut hasher = DefaultHasher::new();
+    map.hash(&mut hasher);
+    hasher.finish()
 }
 
 fn parse(input: &str) -> Vec<Vec<RockType>> {
