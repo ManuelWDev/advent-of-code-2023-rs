@@ -81,9 +81,8 @@ fn move_rocks(
                     free_count = 0;
                 }
                 RockType::Moving => {
-                    let mut used_rock_index = i;
                     if free_count > 0 {
-                        used_rock_index = free_index;
+                        let used_rock_index = free_index;
                         free_index += 1;
 
                         set_map(map, i, j, RockType::None);
