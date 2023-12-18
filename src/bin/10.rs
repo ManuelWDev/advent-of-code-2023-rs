@@ -173,7 +173,6 @@ impl Map {
         dir: Direction,
         apply_to_tile: &mut dyn FnMut(&Tile) -> (),
     ) -> bool {
-
         let mut from = from;
         let mut dir = dir;
 

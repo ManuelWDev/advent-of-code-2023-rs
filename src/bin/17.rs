@@ -70,7 +70,7 @@ impl Map {
             let visit_info = &mut visit_infos[position.y][position.x];
 
             let mut changed_a_state = false;
-            
+
             for visit_state in visit_info.iter_mut() {
                 if !visit_state.movement.variant_equals(&state.movement) {
                     continue;
