@@ -12,9 +12,7 @@ pub fn part_one(input: &str) -> Option<u32> {
     Some(count_xy_collisions_in_range(&lines))
 }
 
-pub fn part_two(input: &str) -> Option<u32> {
-    let mut lines = parse(input);
-    adjust_velocities_relative_to_first(&mut lines);
+pub fn part_two(_: &str) -> Option<u32> {
     None
 }
 
@@ -44,15 +42,6 @@ fn count_xy_collisions_in_range(lines: &Vec<Line>) -> u32 {
     }
 
     count
-}
-
-fn adjust_velocities_relative_to_first(lines: &mut Vec<Line>) {
-    let first_direction = lines[0].direction.clone();
-    for line in lines.iter_mut() {
-        line.direction.x -= first_direction.x;
-        line.direction.y -= first_direction.y;
-        line.direction.z -= first_direction.z;
-    }
 }
 
 struct Line {
